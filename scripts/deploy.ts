@@ -1,5 +1,4 @@
 import { ethers } from "hardhat";
-import { contracts } from "../typechain-types";
 import { ContractMethodArgs } from "ethers";
 
 async function main() {
@@ -16,18 +15,22 @@ async function main() {
         name: "TimeLock",
         args: []
       },
-       {
+      {
         name: "HotelRoom",
+        args: []
+      },
+      {
+        name: "ERC20Impl",
         args: []
       }
     ]
-  
-    let deployResult : Promise<void>[] = [];
+
+    let deployResult: Promise<void>[] = [];
     for (let contractJson of contracts) {
-      deployResult.push( deployContract(contractJson.name, ...contractJson.args));
+      deployResult.push(deployContract(contractJson.name, ...contractJson.args));
     }
     for (let result of deployResult) {
-        await result;
+      await result;
     }
   } catch (error) {
     console.error("Error during deployment:", error);
@@ -35,7 +38,7 @@ async function main() {
   }
 }
 
-async function deployContract(contractName: string, ...args: ContractMethodArgs<any>) : Promise<void> {
+async function deployContract(contractName: string, ...args: ContractMethodArgs<any>): Promise<void> {
   const contractFactory = await ethers.getContractFactory(contractName);
   console.log(`Estimating gas for deployment contract  ${contractName}`);
   let deploymentTransaction = await contractFactory.getDeployTransaction(...args);

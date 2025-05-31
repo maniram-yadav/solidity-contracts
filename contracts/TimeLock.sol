@@ -15,6 +15,10 @@ contract TimeLock {
         lockTime[msg.sender] = block.timestamp + 1 weeks;
     }
 
+    function getBalance() external view returns (uint256) {
+        return balances[msg.sender];
+        
+    }
     function increaseTimeLock(uint256   secondsToIncrease) public {
         lockTime[msg.sender] = lockTime[msg.sender] +secondsToIncrease;
     }

@@ -7,7 +7,7 @@ describe("TimeLock Tests", async function () {
 
   let timeLock: TimeLock;
   let owner: HardhatEthersSigner;
-  let testdisabled = true;
+  let testdisabled = false;
 
   beforeEach(async function () {
     const owners = await ethers.getSigners();
@@ -32,6 +32,7 @@ describe("TimeLock Tests", async function () {
   testdisabled && it("Lock time not expured", async function () {
     const tx = await timeLock.deposit({ value: 1000 });
     await tx.wait();
+    
     const withdraw = await timeLock.withdraw();
     expect(withdraw).to.be.revertedWith("lock time have not expired");
   });

@@ -18,12 +18,16 @@ describe("MultiSignWallet Tests", function () {
  testdisabled &&  it("Total owners count", async function () {
     const owners = await multiSignWallet.getOwners();
     expect(owners.length).to.be.equal(20)
+  
   });
 
  testdisabled &&  it("Submit Transaction", async function () {
     const owners = await multiSignWallet.getOwners();
     const tx = await multiSignWallet.submitTransaction(owners[2], 1, "0x");
     const receipt = await tx.wait();
+      multiSignWallet.on(multiSignWallet.getEvent("SubmitTransaction"),function (){
+      
+    })
     const logs = receipt?.logs;
     const log = logs ? logs[0] : null;
     const iface = new ethers.Interface(multiSignWallet.interface.fragments);

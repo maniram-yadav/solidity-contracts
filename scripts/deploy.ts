@@ -15,6 +15,10 @@ async function main() {
       }, {
         name: "TimeLock",
         args: []
+      },
+       {
+        name: "HotelRoom",
+        args: []
       }
     ]
   

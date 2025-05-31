@@ -7,7 +7,7 @@ describe("TimeLock Tests", async function () {
 
   let timeLock: TimeLock;
   let owner: HardhatEthersSigner;
-  let testdisabled = false;
+  let testenabled = false;
 
   beforeEach(async function () {
     const owners = await ethers.getSigners();
@@ -16,7 +16,7 @@ describe("TimeLock Tests", async function () {
     await timeLock.waitForDeployment();
   });
 
-  testdisabled && it("Add balance", async function () {
+  testenabled && it("Add balance", async function () {
     const tx = await timeLock.deposit({ value: 1000 });
     await tx.wait();
     const balance = await timeLock.getBalance();
@@ -24,12 +24,12 @@ describe("TimeLock Tests", async function () {
 
   });
 
-  testdisabled && it("Insufficient balance", async function () {
+  testenabled && it("Insufficient balance", async function () {
     const tx = await timeLock.withdraw();
     expect(tx).to.be.revertedWith("Inefficient fund");
   });
 
-  testdisabled && it("Lock time not expured", async function () {
+  testenabled && it("Lock time not expired", async function () {
     const tx = await timeLock.deposit({ value: 1000 });
     await tx.wait();
     

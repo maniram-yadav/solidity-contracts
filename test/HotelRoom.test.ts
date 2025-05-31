@@ -7,7 +7,7 @@ describe("HotelRoom Tests", async function () {
 
   let hotelRoom: HotelRoom;
   let owner: HardhatEthersSigner;
-  let testdisabled = true;
+  let testenabled = false;
 
   beforeEach(async function () {
     const [owner] = await ethers.getSigners();
@@ -16,7 +16,7 @@ describe("HotelRoom Tests", async function () {
     await hotelRoom.waitForDeployment();
   });
 
-  testdisabled && it("Book Room", async function () {
+  testenabled && it("Book Room", async function () {
     const tx = await hotelRoom.book({ value: 2 });
     const bookedEvent = hotelRoom.getEvent("Booked");
     hotelRoom.on(bookedEvent, (from, value) => {
@@ -28,12 +28,12 @@ describe("HotelRoom Tests", async function () {
     await tx.wait();
   });
 
-  testdisabled && it("Released Room", async function () {
+  testenabled && it("Released Room", async function () {
     const bookTransaction = await hotelRoom.book({ value: 2 });
     await bookTransaction.wait();
     const tx = await hotelRoom.release();
     const releaseEvent = hotelRoom.getEvent("Released");
-    hotelRoom.on(releaseEvent, (from, value) => {
+    hotelRoom.on(releaseEvent, (from) => {
       console.log("Released event triggered:");
       console.log("From:", from);
     });

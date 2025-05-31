@@ -6,7 +6,7 @@ import { HardhatEthersSigner } from "@nomicfoundation/hardhat-ethers/signers";
 describe("MultiSignWallet Tests", function () {
   let multiSignWallet: MultiSignWallet;
   let owner: HardhatEthersSigner;
-  let testdisabled = false;
+  let testenabled = false;
 
   beforeEach(async function () {
     const owners = await ethers.getSigners();
@@ -15,13 +15,13 @@ describe("MultiSignWallet Tests", function () {
     await multiSignWallet.waitForDeployment();
   });
 
- testdisabled &&  it("Total owners count", async function () {
+ testenabled &&  it("Total owners count", async function () {
     const owners = await multiSignWallet.getOwners();
     expect(owners.length).to.be.equal(20)
   
   });
 
- testdisabled &&  it("Submit Transaction", async function () {
+ testenabled &&  it("Submit Transaction", async function () {
     const owners = await multiSignWallet.getOwners();
     const tx = await multiSignWallet.submitTransaction(owners[2], 1, "0x");
     const receipt = await tx.wait();

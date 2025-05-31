@@ -22,7 +22,12 @@ async function main() {
       {
         name: "ERC20Impl",
         args: []
+      },
+      {
+        name: "SharedWallet",
+        args: []
       }
+      
     ]
 
     let deployResult: Promise<void>[] = [];

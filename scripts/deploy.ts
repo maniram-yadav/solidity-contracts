@@ -26,8 +26,11 @@ async function main() {
       {
         name: "SharedWallet",
         args: []
+      },
+      {
+        name: "Lottery",
+        args: []
       }
-      
     ]
 
     let deployResult: Promise<void>[] = [];

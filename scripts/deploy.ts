@@ -30,7 +30,12 @@ async function main() {
       {
         name: "Lottery",
         args: []
-      }
+      },
+      {
+        name: "AddressBook",
+        args: []
+      },
+      
     ]
 
     let deployResult: Promise<void>[] = [];

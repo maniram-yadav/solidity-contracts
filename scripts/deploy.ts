@@ -40,8 +40,18 @@ async function main() {
         args: [
           "Mr Crazy Meme",
           "MCM",
-          "baseuri",
-          "contact uri",
+         "ipfs://base-uri/",
+          "ipfs://contract-uri",
+          "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
+        ]
+      },
+      {
+        name: "ERC1155Impl",
+        args: [
+          "King Goerge",
+          "KGF",
+         "ipfs://base-uri/",
+          "ipfs://contract-uri",
           "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"
         ]
       },
